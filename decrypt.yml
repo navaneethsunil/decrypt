@@ -50,4 +50,4 @@
   become: false
   tasks:
   - name: test the connection
-    ansible.windows.win_ping:
+    win_ping:

@@ -30,8 +30,9 @@
 
   - name: Register dummy host with variable
      add_host:
-       name: 192.168.1.41
-       VAR_NEW: " {{ result.stdout }}"
+        name: 192.168.1.41
+        VAR_NEW: " {{ result.stdout }}"
+
   - debug:
         msg: "Encrypted/Decrypted String: {{ result.stdout_lines }}"
 

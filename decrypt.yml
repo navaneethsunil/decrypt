@@ -28,11 +28,16 @@
         path: /home/pythonfiles
         state: absent
 
-  - name: Register dummy host with variable
+  - name: Register remote linux host with variable
     add_host:
         name: "192.168.1.41"
         VAR_NEW: "{{ result.stdout }}"
 
+  - name: Register remote windows host with variable
+    add_host:
+        name: "192.168.1.34"
+        VAR2_NEW: "{{ result.stdout }}"
+        
   - debug:
         msg: "Encrypted/Decrypted String: {{ result.stdout_lines }}"
 
@@ -49,5 +54,12 @@
   hosts: 192.168.1.34
   become: false
   tasks:
-  - name: test the connection
+  - name: Test Windows Remote Host Connection
     win_ping:
+
+  - name: Create file if it doesn't exist with a specific encoding
+    win_lineinfile:
+        path: C:\Users\ansib\passwd.txt
+        create: yes
+        encoding: utf-16
+        line: {{ hostvars['192.168.1.34']['VAR2_NEW'] }}

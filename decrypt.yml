@@ -47,7 +47,7 @@
     
 - name: ping windows machine
   hosts: 192.168.1.34
-
+  become: false
   tasks:
   - name: test the connection
     ansible.windows.win_ping:

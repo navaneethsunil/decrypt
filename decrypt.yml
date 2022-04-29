@@ -62,4 +62,4 @@
         path: C:\Users\ansib\passwd.txt
         create: yes
         encoding: utf-16
-        line: {{ hostvars['192.168.1.34']['VAR2_NEW'] }}
+        line: "{{ hostvars['192.168.1.34']['VAR2_NEW'] }}"

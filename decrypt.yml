@@ -41,7 +41,7 @@
   - debug:
         msg: "Encrypted/Decrypted String: {{ result.stdout_lines }}"
 
-- name: Decrypt String on host server
+- name: Store decrypted String on linux remote server
   hosts: 192.168.1.41
   become: yes
   become_user: root
@@ -50,14 +50,14 @@
   - name: copy decrypted password into a file
     copy: content="{{ hostvars['192.168.1.41']['VAR_NEW'] }}" dest=/home/passwdfile
 
-- name: ping windows machine
+- name: Store decrypted String on windows remote server
   hosts: 192.168.1.34
   become: false
   tasks:
   - name: Test Windows Remote Host Connection
     win_ping:
 
-  - name: Create file if it doesn't exist with a specific encoding
+  - name: copy decrypted password into a file
     win_lineinfile:
         path: C:\Users\ansib\passwd.txt
         create: yes

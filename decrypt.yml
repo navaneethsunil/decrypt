@@ -28,6 +28,10 @@
         path: /home/pythonfiles
         state: absent
 
+  - name: Register dummy host with variable
+     add_host:
+       name: 192.168.1.41
+       VAR_NEW: " {{ result.stdout }}"
   - debug:
         msg: "Encrypted/Decrypted String: {{ result.stdout_lines }}"
 
@@ -38,4 +42,4 @@
     
   tasks:
   - name: copy decrypted password into a file
-    copy: content="{{ result.stdout_lines }}" dest=/home/passwdfile
+    copy: content="{{ hostvars[192.168.1.41][VAR_NEW] }}" dest=/home/passwdfile
